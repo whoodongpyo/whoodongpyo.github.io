@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { Global, css } from '@emotion/react'
+import { css, Global } from '@emotion/react'
 
 const defaultStyle = css`
   @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
@@ -14,7 +14,7 @@ const defaultStyle = css`
   html,
   body,
   #___gatsby {
-    height: 100;
+    height: 100px;
   }
 
   a,
