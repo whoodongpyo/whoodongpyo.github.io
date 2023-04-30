@@ -44,8 +44,8 @@ const Template: FunctionComponent<TemplateProps> = function ({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
-        <meta name="twitter:site" content="@username" />
-        <meta name="twitter:creator" content="@username" />
+        <meta name="twitter:site" content="@whoodongpyo" />
+        <meta name="twitter:creator" content="@whoodongpyo" />
 
         <meta
           name="google-site-verification"
