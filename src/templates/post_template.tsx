@@ -3,18 +3,56 @@ import React, { FunctionComponent } from 'react'
 import { graphql } from 'gatsby'
 
 import Template from 'components/Common/Template'
+import PostHead from 'components/Post/PostHead'
+import { PostFrontmatterType } from '../types/PostItem.types'
 
-type PostTemplateProps = {}
-
-const PostTemplate: FunctionComponent<PostTemplateProps> = function (props) {
-  console.log(props)
-
-  return <Template>Post Template</Template>
+type PostTemplateProps = {
+  data: {
+    allMarkdownRemark: {
+      edges: PostPageItemType[]
+    }
+  }
 }
 
-export default PostTemplate
+type PostPageItemType = {
+  node: {
+    html: string
+    frontmatter: PostFrontmatterType
+  }
+}
 
-export const queryMarkdownDataBySlug = graphql`
+const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
+  data: {
+    allMarkdownRemark: { edges },
+  },
+}) {
+  const {
+    node: {
+      frontmatter: {
+        title,
+        summary,
+        date,
+        categories,
+        thumbnail: {
+          childImageSharp: { gatsbyImageData },
+        },
+      },
+    },
+  } = edges[0]
+
+  return (
+    <Template>
+      <PostHead
+        title={title}
+        date={date}
+        categories={categories}
+        thumbnail={gatsbyImageData}
+      />
+    </Template>
+  )
+}
+
+const queryMarkdownDataBySlug = graphql`
   query queryMarkdownDataBySlug($slug: String) {
     allMarkdownRemark(filter: { fields: { slug: { eq: $slug } } }) {
       edges {
@@ -36,3 +74,5 @@ export const queryMarkdownDataBySlug = graphql`
     }
   }
 `
+export default PostTemplate
+export { PostPageItemType, queryMarkdownDataBySlug }
