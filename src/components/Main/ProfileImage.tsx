@@ -8,8 +8,7 @@ type ProfileImageProps = {
 }
 
 // 자신이 원하는 프로필 이미지 링크로 설정하기
-const PROFILE_IMAGE_LINK =
-  'https://avatars.githubusercontent.com/u/55405713?v=4'
+// const PROFILE_IMAGE_LINK = 'https://avatars.githubusercontent.com/u/55405713?v=4'
 
 const ProfileImageWrapper = styled(GatsbyImage)`
   width: 120px;
