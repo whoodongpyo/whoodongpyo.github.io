@@ -47,15 +47,17 @@ const PostList: FunctionComponent<PostListType> = function ({
 
   return (
     <PostListWrapper ref={containerRef}>
-      {postList.map(({ node: { id, frontmatter } }: PostListItemType) => {
-        return (
-          <PostItem
-            {...frontmatter}
-            link="https://www.google.co.kr/"
-            key={id}
-          />
-        )
-      })}
+      {postList.map(
+        ({
+          node: {
+            id,
+            frontmatter,
+            fields: { slug },
+          },
+        }: PostListItemType) => {
+          return <PostItem {...frontmatter} link={slug} key={id} />
+        },
+      )}
     </PostListWrapper>
   )
 }
