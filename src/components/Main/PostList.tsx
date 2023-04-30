@@ -3,7 +3,9 @@ import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { PostItem } from 'components/Main/PostItem'
 import { PostListItemType } from '../../types/PostItem.types'
-import useInfiniteScroll from 'hooks/useInfiniteScroll'
+import useInfiniteScroll, {
+  useInfiniteScrollType,
+} from 'hooks/useInfiniteScroll'
 
 type PostType = {
   node: {
@@ -43,7 +45,10 @@ const PostList: FunctionComponent<PostListType> = function ({
   selectedCategory,
   posts,
 }) {
-  const { containerRef, postList } = useInfiniteScroll(selectedCategory, posts)
+  const { containerRef, postList }: useInfiniteScrollType = useInfiniteScroll(
+    selectedCategory,
+    posts,
+  )
 
   return (
     <PostListWrapper ref={containerRef}>
@@ -51,8 +56,8 @@ const PostList: FunctionComponent<PostListType> = function ({
         ({
           node: {
             id,
-            frontmatter,
             fields: { slug },
+            frontmatter,
           },
         }: PostListItemType) => {
           return <PostItem {...frontmatter} link={slug} key={id} />

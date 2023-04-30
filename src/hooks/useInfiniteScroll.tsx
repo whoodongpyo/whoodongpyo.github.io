@@ -63,3 +63,4 @@ const useInfiniteScroll = function (
 }
 
 export default useInfiniteScroll
+export { useInfiniteScrollType }
