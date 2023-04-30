@@ -40,7 +40,7 @@ const PostListWrapper = styled.div`
 const PostList: FunctionComponent<PostListType> = function ({ posts }) {
   return (
     <PostListWrapper>
-      {posts.map(({ node: { id, frontmatter } }: PostType) => {
+      {posts.map(({ node: { id, frontmatter } }: PostListItemType) => {
         return (
           <PostItem
             {...frontmatter}
