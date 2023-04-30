@@ -2,6 +2,7 @@ import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { FunctionComponent } from 'react'
 
 import styled from '@emotion/styled'
+import PostHeadInfo, { PostHeadInfoProps } from 'components/Post/PostHeadInfo'
 
 type GatsbyImgProps = {
   image: IGatsbyImageData
@@ -9,7 +10,7 @@ type GatsbyImgProps = {
   className?: string
 }
 
-type PostHeadProps = {
+type PostHeadProps = PostHeadInfoProps & {
   thumbnail: IGatsbyImageData
 }
 
@@ -26,12 +27,18 @@ const BackgroundImage = styled((props: GatsbyImgProps) => (
   width: 100%;
   height: 400px;
   object-fit: cover;
-  filter: brightness(0.25);
+  filter: brightness(0.5);
 `
-const PostHead: FunctionComponent<PostHeadProps> = function ({ thumbnail }) {
+const PostHead: FunctionComponent<PostHeadProps> = function ({
+  title,
+  date,
+  categories,
+  thumbnail,
+}) {
   return (
     <PostHeadWrapper>
       <BackgroundImage image={thumbnail} alt="thumbnail" />
+      <PostHeadInfo title={title} date={date} categories={categories} />
     </PostHeadWrapper>
   )
 }
