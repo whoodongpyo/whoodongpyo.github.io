@@ -1,9 +1,6 @@
 import React, { FunctionComponent, useMemo } from 'react'
 
-import { GlobalStyle } from 'components/Common/GlobalStyle'
-
 import Template from 'components/Common/Template'
-import { Footer } from 'components/Common/Footer'
 import { Introduction } from 'components/Main/Introduction'
 import { CategoryList, CategoryListProps } from 'components/Main/CategoryList'
 import { PostList } from 'components/Main/PostList'
