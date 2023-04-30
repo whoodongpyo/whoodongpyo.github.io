@@ -6,8 +6,9 @@ import { GlobalStyle } from 'components/Common/GlobalStyle'
 import { Footer } from 'components/Common/Footer'
 import { Introduction } from 'components/Main/Introduction'
 import { CategoryList } from 'components/Main/CategoryList'
-import { PostList, PostType } from 'components/Main/PostList'
+import { PostList } from 'components/Main/PostList'
 import { graphql } from 'gatsby'
+import { PostListItemType } from '../types/PostItem.types'
 
 const CATEGORY_LIST = {
   All: 5,
@@ -24,7 +25,7 @@ const Container = styled.div`
 type IndexPageProps = {
   data: {
     allMarkdownRemark: {
-      edges: PostType[]
+      edges: PostListItemType[]
     }
   }
 }
@@ -61,7 +62,9 @@ export const getPostList = graphql`
             date(formatString: "YYYY.MM.DD.")
             categories
             thumbnail {
-              publicURL
+              childImageSharp {
+                gatsbyImageData(width: 768, height: 400)
+              }
             }
           }
         }
