@@ -9,7 +9,9 @@ type PostItemProps = {
   date: string
   categories: string[]
   summary: string
-  thumbnail: string
+  thumbnail: {
+    publicURL: string
+  }
   link: string
 }
 
@@ -94,12 +96,13 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   date,
   categories,
   summary,
-  thumbnail,
+  thumbnail: { publicURL },
   link,
 }) {
   return (
     <PostItemWrapper to={link}>
-      <ThumbnailImage src={thumbnail} alt="Post Item Image" />
+      <ThumbnailImage src={publicURL} alt="Post Item Image" />
+
       <PostItemContent>
         <Title>{title}</Title>
         <Date>{date}</Date>
