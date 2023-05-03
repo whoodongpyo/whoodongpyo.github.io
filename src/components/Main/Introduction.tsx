@@ -58,8 +58,8 @@ const Introduction: FunctionComponent<IntroductionProps> = function ({
         <ProfileImage profileImage={profileImage} />
 
         <div>
-          <SubTitle>Nice to Meet You,</SubTitle>
-          <Title>I'm Junior Front-end Developer Whooping.</Title>
+          <SubTitle>안녕하세요,</SubTitle>
+          <Title>주니어 프론트엔드 개발자 Hugo입니다.</Title>
         </div>
       </Wrapper>
     </Background>

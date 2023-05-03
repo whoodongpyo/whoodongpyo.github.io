@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `주니어 개발자의 개발 블로그`,
-    description: `주니어 개발자로서의 저를 표현한 블로그입니다.`,
+    title: `주니어 프론트엔드 개발자 Hugo의 개발 블로그`,
+    description: `Hugo의 공부 기록입니다.`,
     author: `Whoodongpyo`,
     siteUrl: 'https://whoodongpyo.github.io', // 배포 후 변경 예정
   },
