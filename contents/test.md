@@ -1,27 +1,84 @@
 ---
-date: '2023-04-29'
-title: '테스트 글입니다.'
-categories: ['Web', 'SEO', 'Optimization']
-summary: '테스트용 첫 글입니다.'
-thumbnail: './test.jpg'
+date: '2023-02-27'
+title: '@emotion 에서 props 사용하기'
+categories: ['React.js', '@emotion']
+summary: 'React.js 와 @emotion 을 적용하여 Styled Component 를 생성했을 때, 그 컴포넌트에 props 를 어떻게 전달하여 사용하는가?'
+thumbnail: './ReactJS-lautaro-andreani-xkBaqlcqeb4-unsplash.jpg'
 ---
 
-### 1. Help Google Bot to Find My Contents
+## @emotion 에서 CSS 옵션을 작성하는 방식은 크게 2가지가 있다.
+- 백틱(``)을 이용해서 작성하기
+- Object(`{ }`) 형식으로 작성하기
 
-구글에 SiteMap을 제출하여 사이트에 있는 파일로서 새 페이지나 변경된 페이지가 있을 때 이를 검색 엔진에 알려주도록 할 수 있다.
+### 각각을 코드로 표현하면 다음과 같다.
 
-SiteMap은 사이트에 있는 페이지, 동영상 및 기타 파일과 각 관계에 관한 정보를 제공하는 파일로, 검색 엔진은 이를 읽고 사이트를 더 지능적으로 크롤링 할 수 있게 된다.
+* Object 방식
+  ```jsx
+  // 카페 메뉴의 이미지를 담을 MenuImage 컴포넌트
+  const MenuImage = styled.div(
+    {
+      margin: '50px auto 30px auto',
+      borderRadius: '50%',
+      width: '150px',
+      height: '150px',
+      border: '2px solid orange'
+    }
+  );
+  ```
 
-### 2. Use 'Robots.txt' File
+* 백틱(``) 방식
+  ```jsx
+  // 카페 메뉴의 이미지를 담을 MenuImage 컴포넌트
+  const MenuImage = styled.div`
+    margin: '50px auto 30px auto',
+    borderRadius: '50%',
+    width: '150px',
+    height: '150px',
+    border: '2px solid orange'
+  `;
+  ```
+  
+## 위 스타일드 컴포넌트에 `props` 를 전달해서 사용하려면 어떻게 해야할까?
+* `<MenuImage>` 컴포넌트에 이미지 url 을 전달하기 위해 `url` 이라는 props 를 전달한다.
+  ```jsx
+  export default function MenuContainer() {
+    return (
+      <MenuContainerStyle>
+        {menuList.map((menu) => (
+          <Menu key={menu.name}>
+            <MenuImage url={menu.imageURL} />  // url 이라는 props 전달
+            <MenuName>{menu.name}</MenuName>
+          </Menu>
+        ))}
+      </MenuContainerStyle>
+    );
+  }
+  ```
 
-Robots.txt 파일은 검색 엔진에 어떤 페이지를 크롤링해도 되는지 알리는 파일로, 서버의 루트 디렉토리에 있어야 한다.
-
-과도한 Robots.txt 파일은 더 많은 방문자를 유도할 수 있는 정상적인 검색 엔진 크롤러의 접근을 막을 가능성이 있기 때문에 적절하게 설정해야 한다.
-
----
-
-## Source
-
-- SEO 기본 가이드
-
-  [<https://support.google.com/webmasters/answer/7451184?hl=ko&ref_topic=9460495>](<https://support.google.com/webmasters/answer/7451184?hl=ko&ref_topic=9460495>)
+### Object 방식으로 작성한 styled component 에서 props 사용하기
+  ```jsx
+  // 1) Object 형식으로 styled component 를 작성할 때
+  const MenuImage = styled.div(
+    {
+      margin: '50px auto 30px auto',
+      borderRadius: '50%',
+      width: '150px',
+      height: '150px',
+      border: '2px solid orange',
+    },
+      // props 사용하기
+    (props) => ({
+      background: `url("${props.url}") center/100% no-repeat`,
+    }),
+  );
+  ```
+### 백틱 방식으로 작성한 styled component 에서 props 사용하기
+  ```jsx
+  const MenuImage = styled.div`
+    margin: 50px auto 30px auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    background: url("${(props) => props.url}") center/100% no-repeat;
+  `;
+  ```
